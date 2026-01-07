@@ -1,0 +1,125 @@
+@model IEnumerable<ZhrCare.Models.Routine>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@* <h1>Index</h1> *@
+@* *@
+@* <p> *@
+@*     <a asp-action="Create">Create New</a> *@
+@* </p> *@
+@* <table class="table"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.ActivityName) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.Time) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.IsCompleted) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.Patient) *@
+@*             </th> *@
+@*             <th></th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@* @foreach (var item in Model) { *@
+@*         <tr> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.ActivityName) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Time) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.IsCompleted) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Patient.Name) *@
+@*             </td> *@
+@*             <td> *@
+@*                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
+@*                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> | *@
+@*                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+@*             </td> *@
+@*         </tr> *@
+@* } *@
+@*     </tbody> *@
+@* </table> *@
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 style="color: #6c5ce7; font-weight: bold;">📋 Patient Routine List</h2>
+        <a asp-action="Create" class="btn text-white shadow-sm" style="background-color: #6c5ce7; border-radius: 10px; padding: 10px 20px;">
+            + Create New Routine
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0" style="border-radius: 15px;">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead style="background-color: #6c5ce7; color: white;">
+                    <tr>
+                        <th class="border-0">Activity Name</th>
+                        <th class="border-0">Scheduled Time</th>
+                        <th class="border-0">Status</th>
+                        <th class="border-0">Patient Name</th>
+                        <th class="border-0 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-5 text-muted">
+                                <i class="bi bi-calendar-x" style="font-size: 2rem;"></i>
+                                <p class="mt-2">No routines scheduled for your patients yet.</p>
+                            </td>
+                        </tr>
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="align-middle fw-bold">@item.ActivityName</td>
+                            <td class="align-middle text-secondary">
+                                @item.Time.ToString(@"hh\:mm") </td>
+                            <td class="align-middle">
+                                @if (item.IsCompleted)
+                                {
+                                    <span class="badge bg-success" style="border-radius: 20px; padding: 8px 12px;">Completed</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark" style="border-radius: 20px; padding: 8px 12px;">Pending</span>
+                                }
+                            </td>
+                            <td class="align-middle">
+                                <span class="badge bg-light text-dark p-2" style="border: 1px solid #dee2e6;">
+                                    👤 @(item.Patient?.Name ?? "N/A")
+                                </span>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary mx-1" title="Edit">
+                                        Edit
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info mx-1" title="Details">
+                                        Details
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger mx-1" title="Delete">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

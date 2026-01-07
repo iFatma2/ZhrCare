@@ -17,7 +17,6 @@ namespace ZhrCare.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // الربط مع المستخدم (Caregiver)
         public string CaregiverId { get; set; }
         
         [ForeignKey("CaregiverId")]

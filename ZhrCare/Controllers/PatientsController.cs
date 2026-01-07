@@ -89,7 +89,7 @@ namespace ZhrCare.Controllers
             
             if (ModelState.IsValid)
             {
-                patient.CaregiverId = _userManager.GetUserId(User); // ربط المريض بالمستخدم
+                patient.CaregiverId = _userManager.GetUserId(User);//
                 patient.CreatedAt = DateTime.Now;
                 patient.AccessToken = Guid.NewGuid();
             
