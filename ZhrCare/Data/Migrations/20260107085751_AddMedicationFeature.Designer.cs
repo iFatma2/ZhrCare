@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZhrCare.Data;
 
@@ -11,9 +12,11 @@ using ZhrCare.Data;
 namespace ZhrCare.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260107085751_AddMedicationFeature")]
+    partial class AddMedicationFeature
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,6 +251,7 @@ namespace ZhrCare.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FrequencyType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -262,6 +266,7 @@ namespace ZhrCare.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SelectedDays")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")

@@ -62,22 +62,6 @@ namespace ZhrCare.Controllers
         }
 
         // POST: Patients/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Create([Bind("Id,Name,Age,AccessToken,CreatedAt,CaregiverId")] Patient patient)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         _context.Add(patient);
-        //         await _context.SaveChangesAsync();
-        //         return RedirectToAction(nameof(Index));
-        //     }
-        //     ViewData["CaregiverId"] = new SelectList(_context.Users, "Id", "Id", patient.CaregiverId);
-        //     return View(patient);
-        // }
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Age")] Patient patient)
