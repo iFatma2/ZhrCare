@@ -60,6 +60,11 @@
                                        style="color: #6c5ce7; background-color: #f1f0ff; border-radius: 8px; width: 100px;">
                                         <i class="bi bi-calendar-check"></i> Schedule
                                     </a>
+                                    <a asp-controller="MemoryRecords" asp-action="Index" asp-route-patientId="@item.Id" 
+                                       class="btn btn-sm shadow-sm" 
+                                       style="background-color: #f8f9fa; color: #6c5ce7; border: 1px solid #6c5ce7; border-radius: 10px; padding: 5px 12px;">
+                                        <i class="bi bi-person-video"></i> Memories
+                                    </a>
                                 </div>
                             </td>
                         </tr>

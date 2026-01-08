@@ -1,0 +1,50 @@
+@model ZhrCare.Models.MemoryRecord
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0" style="border-radius: 15px;">
+                <div class="card-header text-white text-center" style="background-color: #6c5ce7; border-radius: 15px 15px 0 0;">
+                    <h4 class="mb-0">✏️ Edit Memory</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="PatientId" />
+                        <input type="hidden" asp-for="ImagePath" />
+                        <input type="hidden" asp-for="AudioPath" />
+                        <input type="hidden" asp-for="CreatedAt" />
+
+                        <div class="form-group mb-3 text-center">
+                             @if (!string.IsNullOrEmpty(Model.ImagePath)) {
+                                <img src="~/uploads/images/@Model.ImagePath" class="img-thumbnail mb-2" style="height: 120px;" />
+                                <p class="small text-muted">Current Photo</p>
+                             }
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label fw-bold">Caption</label>
+                            <textarea asp-for="Caption" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="Caption" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label fw-bold">Update Photo (Optional)</label>
+                            <input type="file" name="newImage" class="form-control" accept="image/*" />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-bold">Update Audio (Optional)</label>
+                            <input type="file" name="newAudio" class="form-control" accept="audio/*" />
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn text-white" style="background-color: #6c5ce7;">Save Changes</button>
+                            <a asp-action="Index" asp-route-patientId="@Model.PatientId" class="btn btn-light">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
